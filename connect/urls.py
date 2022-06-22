@@ -8,7 +8,7 @@ urlpatterns = [
     path('', views.index, name ='index'),
     path('register/',views.register,name='register'),
     path('logout/', auth_views.LogoutView.as_view(next_page='/login')),
-    path('login/', auth_views.LoginView.as_view(template_name='registration/login.html'),name='login'),
+    path('login/', auth_views.LoginView.as_view(template_name='django_registration/login.html'),name='login'),
 ]
 
 if settings.DEBUG:
