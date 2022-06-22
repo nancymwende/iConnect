@@ -24,3 +24,9 @@ class Dislike(models.Model):
     created_on = models.DateField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+
+
+class Message(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    text = models.TextField(max_length=500, null=False, blank=False)
+    created_on = models.DateField(auto_now_add=True)
