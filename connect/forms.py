@@ -17,4 +17,4 @@ class UserRegisterForm(UserCreationForm):
 class ProfileEditForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['profile_photo','age','ethnicity', 'preference', 'location', 'gender', 'bio', ]
+        fields = ['profile_photo','age','ethnicity', 'preference', 'location', 'gender', 'bio']
