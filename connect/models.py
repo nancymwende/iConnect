@@ -14,3 +14,8 @@ class Profile(models.Model):
     location = models.CharField(max_length=30, null=True, blank=True)
     bio = models.TextField(max_length=500, blank=True)
     preference = models.TextField(max_length=500, blank=True, null=True)
+
+class Like(models.Model):
+    created_on = models.DateField(auto_now_add=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
