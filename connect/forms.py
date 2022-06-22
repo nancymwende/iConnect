@@ -18,3 +18,15 @@ class ProfileEditForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['profile_photo','age','ethnicity', 'preference', 'location', 'gender', 'bio']
+
+class UserUpdateForm(forms.ModelForm):
+    email = forms.EmailField()
+    class Meta:
+        model = User
+        fields = ['username','email'] 
+
+
+class UpdateProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['bio','profile_picture', 'preference', 'location']
