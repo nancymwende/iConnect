@@ -13,7 +13,6 @@
         <ul>
           {% if user.is_authenticated %}
           <li><a href="{% url 'home' %}" class="active">Home</a></li>
-          <li><a href="about.html">About</a></li>
           <li><a href="{% url 'profile' user.profile.id %}">Profile</a></li>
           <li><a href="{% url 'logout' %}">Logout</a></li>
           {% else %}
