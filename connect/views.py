@@ -32,8 +32,22 @@ def index(request):
 @login_required(login_url='login')
 def home(request):
     all_profiles = Profile.objects.all()
-    all_profiles = all_profiles[::-1]
-    return render(request, 'home.html', locals())
+
+    if request.method == "POST":
+        query = request.POST.get('username')
+        results = Profile.objects.filter(user__username=query)
+
+        context = {
+            'all_profiles': results,
+        }
+
+        return render(request, 'home.html', context)
+    
+    context = {
+            'all_profiles': all_profiles,
+        }
+
+    return render(request, 'home.html', context)
 
 
 def user_profile(request, username):
