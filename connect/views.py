@@ -3,9 +3,8 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
 from .forms import *
-from django.core.mail import EmailMultiAlternatives
-# Create your views here.
 
+# Create your views here.
 def register(request):
     if request.method=="POST":
         form=UserRegisterForm(request.POST)
