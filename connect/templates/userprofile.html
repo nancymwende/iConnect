@@ -6,7 +6,9 @@
             <div class="banner_content">
                 <div class="media">
                     <div class="d-flex">
-                        <img src="{{profile.profile_photo.url}}">
+                        {% if profile.profile_photo %}
+                        <img class="card-img" src="{{profile.profile_photo.url}}" alt="profile image">
+                        {% endif %}
                     </div>
                     <div class="media-body">
                         <div class="personal_text">

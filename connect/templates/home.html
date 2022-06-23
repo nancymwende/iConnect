@@ -4,5 +4,37 @@
 {% block title %} iConnect {% endblock title %}
 
 {% block content %}
-
+<div class="container">
+    {% if all_profiles %}
+    <div class="row">
+        {% for profile in all_profiles %}
+        <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
+            <div class="card text-white card-has-bg click-col">
+                <a href="{% url 'profile' profile.id %}"></a>
+                {% if profile.profile_photo %}
+                <img class="card-img" src="{{profile.profile_photo.url}}" alt="profile image">
+                {% endif %}
+                <div class="card-img-overlay d-flex flex-column">
+                    <div class="card-body">
+                        <small class="card-meta mb-2">{{profile.user.username}}</small>
+                        <h4 class="card-title mt-0">
+                            <a class="text-white" href="#">{{profile.bio}}</a>
+                        </h4>
+                        <small><i class="fa fa-map-marker"></i>{{profile.location}}</small>
+                    </div>
+                    <div class="card-footer">
+                        <div class="media">
+                            <div class="media-body">
+                                <h6 class="my-0 text-white d-block">{{profile.user.first_name}}</h6>
+                                <small>{{profile.user.last_name}}</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
 {% endblock content %}
