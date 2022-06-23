@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
 from .forms import *
 from django.core.mail import EmailMultiAlternatives
+from django.http.response import Http404, HttpResponse
 # Create your views here.
 
 def register(request):
@@ -25,8 +26,10 @@ def register(request):
     return render(request, 'django_registration/registration_form.html', params)
 
 @login_required(login_url='login')
-def index(request):
-    return render(request, 'index.html', {'title':'index'})
+def home(request):
+    all_profiles = Profile.objects.all()
+    all_profiles = all_profiles[::-1]
+    return render(request, 'user/home.html', locals())
 
 
 def user_profile(request, username):
@@ -38,11 +41,17 @@ def user_profile(request, username):
     }
     return render(request, 'user/userprofile.html', params)
 
-def profile(request, user_id):
+def profile(request, profile_id):
+    try:
+        user = User.objects.get(pk=profile_id)
+        profile=Profile.objects.get(user=user)
 
-    profiles = User.objects.get(id=user_id)
-    user = User.objects.get(id=user_id)
-    return render(request, 'user/userprofile.html',{"profiles":profiles})
+        context = {
+            "profile":profile
+        }
+    except Profile.DoesNotExist:
+        raise Http404()
+    return render(request, 'user/userprofile.html',context)
 
 def update_profile(request):
     user = request.user
