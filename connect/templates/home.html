@@ -1,12 +1,17 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block styles %}
+{{block.super}}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
 {% block title %} iConnect {% endblock title %}
 
 {% block content %}
 <div class="container">
-    {% if all_profiles %}
     <div class="row">
+        {% if all_profiles %}
         {% for profile in all_profiles %}
         <div class="col-md-6 col-lg-4 my-4">
             <div class="card bg-dark text-light" style="width: 18rem;">
@@ -21,8 +26,8 @@
                 </div>
             </div>
         </div>
+        {% endfor %}
     </div>
-    {% endfor %}
 </div>
 </div>
 {% endif %}
