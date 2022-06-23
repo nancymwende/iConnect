@@ -26,11 +26,14 @@ def register(request):
     }
     return render(request, 'django_registration/registration_form.html', params)
 
+def index(request):
+    return render(request, 'index.html')
+
 @login_required(login_url='login')
 def home(request):
     all_profiles = Profile.objects.all()
     all_profiles = all_profiles[::-1]
-    return render(request, 'user/home.html', locals())
+    return render(request, 'home.html', locals())
 
 
 def user_profile(request, username):
@@ -40,7 +43,7 @@ def user_profile(request, username):
     params = {
         'user_prof': user_prof,
     }
-    return render(request, 'user/userprofile.html', params)
+    return render(request, 'userprofile.html', params)
 
 def profile(request, profile_id):
     try:
@@ -52,7 +55,7 @@ def profile(request, profile_id):
         }
     except Profile.DoesNotExist:
         raise Http404()
-    return render(request, 'user/userprofile.html',context)
+    return render(request, 'userprofile.html',context)
 
 def update_profile(request):
     user = request.user
@@ -71,4 +74,4 @@ def update_profile(request):
         'prof_form': prof_form
     }
 
-    return render(request, 'user/update_profile.html', context )
+    return render(request, 'update_profile.html', context )
